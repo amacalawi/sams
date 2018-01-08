@@ -1,0 +1,52 @@
+
+Enrollment:
+    ✔ List Current only @done (17-05-21 13:41)
+    ✔ Edit Enrollment --> will edit Member @done (17-05-21 14:58)
+
+Schoolyear:
+    Auto update:
+        ✔ only one CURRENT status @done (17-05-21 13:41)
+        ✔ only one OPEN status @done (17-05-21 13:41)
+
+Inbox / Outbox:
+  ☐ Improve UI
+  ✔ Unread notifications @done (17-05-27 19:04)
+  ✔ Status e.g. failed, send later... @done (17-05-27 21:47)
+  ✔ Message sorting by Date DESC @done (17-05-28 09:26)
+
+Monitoring:
+  ☐ with Gates, different view per gate
+
+Monitoring Report:
+  ✔ Summary of Total no. of absent @done (17-06-08 21:40)
+  ☐ " hours of late
+  ☐ " total hours rendered
+
+Privilege/Modules:
+  ☐ Improve UX
+
+Unit Testing:
+  ✔ Messaging Test @done (17-05-21 19:49)
+  ☐ Export / Import from existing system
+
+Reporting:
+  SUMMARY
+    ☐ add column TOTAL No. of ABSENT
+
+  -May 10: ABSENT
+    Student
+    Student2
+    Student3
+  -May 11:
+    ad
+
+  -LATE:
+     -May 10
+       STUDENT              NUMBER OF HOURS LATE
+       Student 1        |    10hourse
+
+
+
+
+JUNE 8:
+  full - with export/import

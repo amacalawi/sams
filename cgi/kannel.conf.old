@@ -1,0 +1,180 @@
+#
+# Kannel Conf
+#
+
+group = core
+admin-port = 13000
+smsbox-port = 13001
+admin-password = f00bar
+unified-prefix = 09,+639
+dlr-storage = internal
+#dlr-storage = mysql
+log-level = 1
+log-file = "/tmp/kannel/kannel_smsgateway.log"
+#access-log = "/tmp/kannel/kannel_access.log"
+
+#
+# delivery report
+#
+
+group = dlr-db
+id = mydlr
+table = dlr
+field-smsc = smsc
+field-timestamp = ts
+field-destination = destination
+field-source = source
+field-service = service
+field-url = url
+field-mask = mask
+field-status = status
+field-boxc-id = boxc
+
+
+group = mysql-connection
+id = mydlr
+host = localhost
+username = root
+password = 
+database = sms
+max-connections = 5
+
+
+# Modem Configurations
+##################################################
+group = modems
+id = nokia30
+name = "Nokia30"
+detect-string = "Nokia"
+detect-string = "30"
+
+group = modems
+id = itegno
+name = "ITEGNO"
+detect-string = "ITEGNO"
+reset-string = "AT+CFUN=1"
+init-string = "AT+CNMI=2,2,0,0,0"
+speed = 115200
+enable-hwhs = "AT+IFC=2,2"
+message-storage = "SM"
+no-pin = true 
+broken = true
+
+group = modems
+id = asti
+name = "ASTI Modem"
+detect-string = "SIEMENS"
+detect-string2 = "TC35"
+init-string = "AT+CNMI=1,2,0,1,1"
+speed = 19200
+enable-hwhs = "AT"
+need-sleep = true
+message-storage = "SM"
+broken = true
+
+group = modems
+id = wavecom
+name = Wavecom
+detect-string = "WAVECOM"
+reset-string = "AT+CFUN=1"
+keepalive-cmd = "AT+CSQ"
+enable-hwhs = "AT+IFC=2,2"
+speed = 9600
+sendline-sleep = 10
+message-storage = "SM"
+broken = true
+
+group = modems
+id = bluocean
+name = Bluocean
+detect-string = "WAVECOM"
+init-string = "AT+CNMI=1,2,0,1,1;+CMEE=1"
+keepalive-cmd = "AT+CSQ;+CMGF=0"
+speed = 115200
+disable-crtscts = true
+message-storage = "SM"
+sendline-sleep = 10
+broken = true
+#enable-mms = true
+###################################################
+
+# SMSC Configurations
+###################################################
+
+# 1st GSM MODEM
+
+# Sun Cellular
+#group = smsc
+#smsc-id = sun 
+#smsc = at
+#modemtype = wavecom
+#device = /dev/ttyS2
+#my-number = 0922
+#speed = 57600
+#keepalive = 90
+#max-error-count = 5
+#sim-buffering = true
+#denied-smsc-id = globe
+
+# 2nd GSM MODEM
+# Globe Cellular
+group = smsc
+smsc-id = smart
+#smsc-id = globe
+smsc = at
+modemtype = bluocean 
+device = /dev/ttyUSB0
+max-error-count = 5
+keepalive = 90
+sim-buffering = true
+#my-number = 09278218533
+my-number = 09183559205
+denied-smsc-id = globe
+
+# SMSC Fake
+#group = smsc
+#smsc-id = fake
+#smsc = fake
+#port = 10000
+#log-level = 0
+#denied-smsc-id = sun;globe
+#
+###################################################
+
+group = smsbox
+bearerbox-host = localhost
+sendsms-port = 13013
+
+group = sendsms-user
+username = foo
+password = bar
+omit-empty = true
+max-messages = 5
+concatenation = true
+default-smsc = smart
+#default-smsc = globe
+#dlr-url = http://127.0.0.1/sms/dlr.php?type=%d&smsc-id=%i&answer=%A&service=%n  
+#dlr-url = http://ayuyang.com/sms/dlr.php?type=%d&smsc-id=%i&answer=%A&service=%n  
+dlr-url = http://127.0.0.1/sms/dlr.php?type=%d&smsc-id=%i&answer=%A&service=%n  
+#//THis is working for MCS
+#dlr-url = http://mcs.com.ph/sms/dlr.php?type=%d&smsc-id=%i&answer=%A&service=%n  
+#dlr-url = http://127.0.0.1/sms/dlr.php?type=%d&smsc-id=%i&answer=%A&service=%n  
+#default-sender = 09225593081
+default-sender = 09225593081
+
+group = sms-service
+keyword = default
+omit-empty = true
+#exec = /home/altair/Projects/smsparser/received.php %p %C %i %a 
+#exec = /home/altair/Projects/smsparser/received.php %p %C %i %a 
+#get-url = http://localhost/sms-dlr/parser.rb?body=%a&msisdn=%p&smsc=%i&charset=%C
+#get-url = http://ayuyang.com/sms/received.php?body=%a&msisdn=%p&smsc=%i&charset=%C
+get-url = http://127.0.0.1/sms/received.php?body=%a&msisdn=%p&smsc=%i&charset=%C
+#//THis is working for MCS
+#get-url = http://mcs.com.ph/sms/received.php?body=%a&msisdn=%p&smsc=%i&charset=%C
+#get-url = http://127.0.0.1/sms/received.php?body=%a&msisdn=%p&smsc=%i&charset=%C
+#accept-x-kannel-headers = true
+max-messages = 5
+concatenation = true
+accepted-smsc = smart
+#accepted-smsc = globe 

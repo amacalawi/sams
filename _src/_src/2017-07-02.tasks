@@ -1,0 +1,17 @@
+SAMS:
+  Monitor (monitor-dtr) @tuesday:
+     ✔ Gate / device @done (17-07-04 02:33)
+
+  Members:
+    ☐ Add birthday field
+
+  DTR:
+    ✔ Mode - Change time checking use mode @done (17-07-04 00:31)
+
+  Devices:
+    ☐ Auto insert devices to SAMS
+
+  Statement of Account (Sending SMS):
+    ☐ CRUD
+      - student_no, name, month, outstanding_balance
+    ☐ with Sending / Msg Template
