@@ -1,0 +1,6 @@
+production_document,delivery_request,delivery_category,transportation_mode,datetime_on_site,contact_name,delivery_to,delivery_address,instructions,job_elements,quantity,uom
+1,2,1,0,2018-01-08 10:47:39,Erick Mariano,JRR WINWIN,Metro Manila City,Deliver and Install per Store,"1569, 1570, 1571, 1572, 1573, 1574, 1575, 7861","1, 5, 1, 1, 4, 1, 2, 1","25, 25, 25, 25, 25, 25, 25, 25"
+1,2,1,0,2018-01-08 10:47:39,Erick Mariano,JRR ABAD GROCERY,Metro Manila City,Deliver and Install per Store,"1576, 1577, 1578, 1579, 1580, 1581, 1582, 1583, 1584, 1585, 7861","1, 4, 1, 2, 1, 1, 3, 1, 2, 1, 2","25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25"
+1,2,1,0,2018-01-08 10:47:39,Erick Mariano,JRR PECSON,Metro Manila City,Deliver and Install per Store,"1586, 1587, 1588, 1589, 1590, 1591, 1592, 1593, 7861","1, 6, 2, 1, 6, 1, 1, 1, 2","25, 25, 25, 25, 25, 25, 25, 25, 25"
+1,2,1,0,2018-01-08 10:47:39,Erick Mariano,JRR RA MALVAR,Metro Manila City,Deliver and Install per Store,"1594, 1595, 1596, 1597, 1598, 1599, 1600, 1601, 1602, 1603, 7861","1, 3, 1, 2, 1, 1, 1, 4, 2, 1, 2","25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25"
+1,2,1,0,2018-01-08 10:47:39,Erick Mariano,JRR RICHMART SUPERSTORE,Metro Manila City,Deliver and Install per Store,"1604, 1605, 7861","7, 1, 5","25, 25, 25"

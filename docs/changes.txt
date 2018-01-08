@@ -1,0 +1,11 @@
+OUTBOX
+- added get_all_outbox, get_alls_outbox, like_outbox, likes_outbox at (Outbox Model)
+- listing (MessagingController)
+- added and modified outbox lists js file
+
+BULK SEND
+- modified bulk send controller (MessagingController)
+
+TRACKING
+- modified tracking class on outbox model (Outbox Model)
+

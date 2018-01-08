@@ -1,0 +1,29 @@
+//switch PRESET MSG
+//	A = EVERYDAY: FILO
+//	B = WEEKDAYS: late in/out + early out | WEEKEND: FILO
+//	C = EVERYDAY: Always send every tap
+
+schedules table [dtr, *sending]
+/// members -> column schedul_id
+
+schedule
+	id
+	name
+
+	time_in_from
+	time_in_to
+
+	time_out_from
+	time_out_to
+
+	presetmsg_id
+
+//// dtr_time_settings -> add schedule_id
+
+
+////// check time in -> insert !timein update based on today's date
+
+///// next check config (a,b,c) which of the three are enabled or DEFAULT (DISABLED).
+
+
+//// members add column `active`

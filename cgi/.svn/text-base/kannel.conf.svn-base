@@ -1,0 +1,234 @@
+#
+# Kannel Conf
+#
+
+group = core
+admin-port = 13000
+smsbox-port = 13001
+admin-password = f00bar
+unified-prefix = 09,+639
+dlr-storage = internal
+log-level = 0
+log-file = "/home/ferdie/Projects/SAMS/docs/kannel_logs/kannel_smsgateway.log"
+access-log = "/home/ferdie/Projects/SAMS/docs/kannel_logs/kannel_access.log"
+#log-file = "/tmp/kannel/kannel_smsgateway.log"
+#access-log = "/tmp/kannel/kannel_access.log"
+
+#
+# delivery report
+#
+
+group = dlr-db
+id = mydlr
+table = dlr
+field-smsc = smsc
+field-timestamp = ts
+field-destination = destination
+field-source = source
+field-service = service
+field-url = url
+field-mask = mask
+field-status = status
+field-boxc-id = boxc
+
+
+group = mysql-connection
+id = mydlr
+host = localhost
+username = root
+password = misdept
+database = rizal
+max-connections = 5
+
+
+# Modem Configurations
+##################################################
+group = modems
+id = nokia30
+name = "Nokia30"
+detect-string = "Nokia"
+detect-string = "30"
+
+group = modems
+id = itegno
+name = "ITEGNO"
+detect-string = "ITEGNO"
+reset-string = "AT+CFUN=1"
+init-string = "AT+CNMI=2,2,0,0,0"
+speed = 115200
+enable-hwhs = "AT+IFC=2,2"
+message-storage = "SM"
+no-pin = true 
+broken = true
+
+group = modems
+id = asti
+name = "ASTI Modem"
+detect-string = "SIEMENS"
+detect-string2 = "TC35"
+init-string = "AT+CNMI=1,2,0,1,1"
+speed = 19200
+enable-hwhs = "AT"
+need-sleep = true
+message-storage = "SM"
+broken = true
+
+group = modems
+id = wavecom
+name = Wavecom
+detect-string = "WAVECOM"
+reset-string = "AT+CFUN=1"
+keepalive-cmd = "AT+CSQ"
+enable-hwhs = "AT+IFC=2,2"
+#enable-mms = true
+init-string = AT+CNMI=2,2,0,1,0;+CMEE=1
+speed = 115200
+#sendline-sleep = 10
+#message-storage = "SM"
+broken = true
+
+#group = modems
+#id = bluocean
+#name = Bluocean
+#detect-string = "WAVECOM"
+#init-string = "AT+CNMI=1,2,0,1,1;+CMEE=1"
+#keepalive-cmd = "AT+CSQ;+CMGF=0"
+#speed = 115200
+#disable-crtscts = true
+#message-storage = "SM"
+#sendline-sleep = 10
+#broken = true
+#enable-mms = true
+
+#
+#OLD SETTINGS
+#group = modems
+#id = wavecom
+#name = Wavecom
+#detect-string = "WAVECOM"
+#reset-string = "AT+CFUN=1"
+#keepalive-cmd = "AT+CSQ"
+#enable-hwhs = "AT+IFC=2,2"
+#speed = 115200
+#need-sleep = true
+#sendline-sleep = 10
+#message-storage = "SM"
+#broken = true
+#
+#
+#
+#
+
+group = modems
+id = huawei
+name = "huawei_e220"
+detect-string = "huawei_e220"
+#init-string = "ATZ"
+init-string = "AT Q0 V1 E1 S0=0 &C1 &D2 +FCLASS=0"
+init-string = "AT+CNMI=0,1,2"
+message-storage = sm
+#speed = 460800
+#message-start = 0
+###################################################
+
+# SMSC Configurations
+###################################################
+
+# 1st GSM MODEM
+# Smart Cellular
+group = smsc
+smsc-id = smart
+smsc = at
+modemtype = wavecom
+#modemtype = huawei
+#device = /dev/ttyS6
+device = /dev/ttyACM0
+#device = /dev/ttyUSB0
+#device = /dev/ttyUSB3
+my-number = 09088911449
+sms-center = +639180000101
+keepalive = 90
+max-error-count = 5
+sim-buffering = true
+#denied-smsc-id = globe;sun
+
+## 2nd GSM MODEM
+## GLobe Cellular
+#group = smsc
+#smsc-id = globe
+#smsc = at
+#modemtype = wavecom 
+#device = /dev/ttyACM1
+##device = /dev/ttyS1
+#sms-center = +639170000130
+#my-number = 09267369377
+#max-error-count = 5
+#keepalive = 90
+#sim-buffering = true
+#denied-smsc-id = sun;smart
+#
+## 3rd GSM MODEM
+## SUN Cellular
+#group = smsc
+#smsc-id = sun
+#smsc = at
+#modemtype = wavecom 
+##device = /dev/ttyUSB0
+#device = /dev/ttyACM2
+##device = /dev/ttyS0
+#my-number = 09234103697
+#max-error-count = 5
+#keepalive = 90
+#sim-buffering = true
+#denied-smsc-id = smart;globe
+
+## 4th GSM MODEM
+## SMART Cellular
+#group = smsc
+#smsc-id = globe
+#smsc = at
+#modemtype = bluocean
+##modemtype = wavecom 
+#device = /dev/ttyUSB0
+#my-number = 09234103697
+#max-error-count = 5
+#keepalive = 90
+#sim-buffering = true
+#denied-smsc-id = sun;smart
+
+# SMSC Fake
+#group = smsc
+#smsc-id = fake
+#smsc = fake
+#port = 10000
+#log-level = 0
+#denied-smsc-id = sun;globe
+#
+###################################################
+
+group = smsbox
+bearerbox-host = localhost
+sendsms-port = 13013
+
+group = sendsms-user
+username = foo
+password = bar
+omit-empty = true
+max-messages = 2
+concatenation = true
+default-smsc =smart
+dlr-url = http://127.0.0.1/SAMS/cgi/dlr.php?type=%d&smsc-id=%i&answer=%A&service=%n  
+default-sender = 09225593081
+
+group = sms-service
+keyword = default
+omit-empty = true
+exec = /home/ferdie/Projects/SAMS/cgi/received.php %p %C %i %a
+#exec = /home/altair/Projects/smsparser/received.php %p %C %i %a 
+#accept-x-kannel-headers = true
+max-messages = 2
+concatenation = true
+accepted-smsc = globe;smart;sun
+#accepted-smsc = globe;smart,sun
+#accepted-smsc = globe
+#accepted-smsc = smart

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/23/trunk/SAMS/cgi
+END
+kannel.conf.old
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/20/trunk/SAMS/cgi/kannel.conf.old
+END
+kannel.init
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/20/trunk/SAMS/cgi/kannel.init
+END
+kannel.conffast
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/20/trunk/SAMS/cgi/kannel.conffast
+END
+received.php
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/23/trunk/SAMS/cgi/received.php
+END
+kannel.conf
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/23/trunk/SAMS/cgi/kannel.conf
+END
+AppController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/23/trunk/SAMS/cgi/AppController.class.php
+END
+DBAccessModel.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/20/trunk/SAMS/cgi/DBAccessModel.class.php
+END
+config.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/23/trunk/SAMS/cgi/config.inc.php
+END
+BaseModel.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/20/trunk/SAMS/cgi/BaseModel.class.php
+END
+dlr.php
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/20/trunk/SAMS/cgi/dlr.php
+END

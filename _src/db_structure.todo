@@ -1,0 +1,54 @@
+
+members:
+  id
+  student_number
+  firstname
+  middlename
+  lastname
+  gender
+  age
+  status
+  address...
+
+mobile_numbers:
+  id
+  member_id --> members.id
+  msisdn
+
+enrollments:
+  id
+  member_id --> members.id
+  mobile_numbers_id --> mobile_numbers.id
+  section_id --> sections.id
+  schoolyear_id --> schoolyears.id
+  enrollment_status
+  guardian
+  other_info...
+
+schoolyears:
+  id
+  name
+  code
+  description
+  year_start
+  year_end
+  years
+  status
+
+enrollment_schoolyear:
+  id
+  enrollment_id --> enrollments.id
+  schoolyear_id --> schoolyears.id
+
+
+assessments?:
+  id
+  enrollment_id --> enrollments.id
+  terms
+  amount
+  balance
+
+
+
+
+

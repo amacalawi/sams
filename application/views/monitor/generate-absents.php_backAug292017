@@ -1,0 +1,49 @@
+<h3>List of Absent Students</h3>
+<table class="table i-table m-t-25 m-b-25">
+    <tbody>
+        <?php
+        $date_from = date('Y-m-d', strtotime(str_replace('/', '-', $_GET['date_from'])));
+        $date_to = date('Y-m-d', strtotime(str_replace('/', '-', $_GET['date_to'])));
+        $type = $_GET['type_order'];
+        $time_from = date("H:i:s", strtotime($_GET['time_from']));
+        $time_to = date("H:i:s", strtotime($_GET['time_to']));
+        $date_from = "$date_from $time_from";
+        $date_to = "$date_to $time_to";
+
+        $date_from = DateTime::createFromFormat('Y-m-d H:i:s', $date_from);
+        $date_to = DateTime::createFromFormat('Y-m-d H:i:s', $date_to);
+        $current = clone $date_from;
+
+        while ($current < $date_to): ?>
+
+            <tr class="tborder">
+                <td class="bgm-green-1 text-center dtr-level" colspan="5">
+                    <?php echo $current->format('M-d Y'); ?>
+                </td>
+            </tr>
+
+            <tr class="tborder">
+            <th class="bgm-green-2 c-black">STUDENT No.</th>
+                <th class="bgm-green-2 c-black">FULLNAME</th>
+            </tr>
+
+            <?php
+            $level_id = $_GET['category_level'];
+            $date = $current->format('Y-m-d');
+            $ids = $this->Monitor->getMembersViaLevelString($level_id, $date);
+            $presentStudents = $this->Monitor->getMembersIdFromDTROfLevel($level_id, $date);
+            $students = $this->Monitor->getMembersViaLevel($level_id);
+            $absents = $this->Monitor->extractAbsentStudents($students, $presentStudents);
+            foreach ($absents as $absent):
+                $absent = $this->Member->find($absent); ?>
+                <tr class="tborder">
+                    <td><?php echo $absent->stud_no; ?></td>
+                    <td><?php echo "$absent->firstname $absent->lastname"; ?></td>
+                </tr>
+            <?php
+            endforeach;;
+            $current = $current->modify('+1 day');
+        endwhile; ?>
+
+    </tbody>
+</table>
