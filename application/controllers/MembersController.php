@@ -434,9 +434,14 @@ class MembersController extends CI_Controller {
             # Update the group_members
             $group_ids = explodetoarray($member_groups);
             $members_groups = $this->GroupMember->lookup('member_id', $id)->result_array();
-            $this->GroupMember->delete_member($id);
-            foreach ($group_ids as $group_id) {
-                $this->GroupMember->insert( array('group_id' => $group_id, 'member_id' => $id ) );
+            $this->GroupMember->delete_members($id);
+            foreach ($group_ids as $group_id) 
+            {
+                $exist = $this->GroupMember->check_if_exist($id, $group_id);
+                        
+                if(!($exist > 0)) {
+                    $this->GroupMember->insert( array('group_id' => $group_id, 'member_id' => $id ) );
+                }
             }
 
             # Response
@@ -607,10 +612,15 @@ class MembersController extends CI_Controller {
             # Update the group_members
             $group_ids = $this->input->post('groups');
             $members_groups = $this->GroupMember->lookup('member_id', $id)->result_array();
-            $this->GroupMember->delete_member($id);
+            $this->GroupMember->delete_members($id);
             if( null !== $group_ids ) {
-                foreach ($group_ids as $group_id) {
-                    $this->GroupMember->insert( array('group_id' => $group_id, 'member_id' => $id ) );
+                foreach ($group_ids as $group_id)
+                {                    
+                    $exist = $this->GroupMember->check_if_exist($id, $group_id);
+                        
+                    if(!($exist > 0)) {
+                        $this->GroupMember->insert( array('group_id' => $group_id, 'member_id' => $id ) );
+                    }
                 }
             } else {
                 $this->GroupMember->delete_member($id);

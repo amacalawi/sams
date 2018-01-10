@@ -365,7 +365,7 @@ jQuery(document).ready(function ($) {
                 data.append('id', id);
 
                 if( id === 'AJAX_CALL_ONLY' ) {
-                    swal("Error", "The slash id is invalid. Please reload the page and try again.", 'error');
+                    swal("Error", "The splash id is invalid. Please reload the page and try again.", 'error');
                     $('[name=close]').click();
                 } else {
                     console.log(homebased + 'monitor/update_splash_source/?id=' + id + '&titles=' + $('#video_titles').val() + '&files');
@@ -489,8 +489,17 @@ jQuery(document).ready(function ($) {
                     var _form = $('#edit-splash-form');
 
                     $.each(splash, function (k, v) {
-                        _form.find('[name=' + k + ']').val( v ).parent().addClass('fg-toggled');
-                        reload_selectpickers_key( k, v);
+
+                        if(k == 'video_title')
+                        {
+                            _form.find('[name=' + k + 's]').val( v ).parent().addClass('fg-toggled');
+                            reload_selectpickers_key( k, v);
+                        }
+                        else
+                        {
+                            _form.find('[name=' + k + ']').val( v ).parent().addClass('fg-toggled');
+                            reload_selectpickers_key( k, v);
+                        }
                     });
                 }
             });
