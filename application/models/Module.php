@@ -181,5 +181,16 @@ class Module extends CI_Model {
         return $this->db->where($column, $value)->get($this->table)->num_rows() > 0;
     }
 
+    public function get_module_slug($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->get('modules')->row()->slug;
+    }
+
+    public function get_module_name($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->get('modules')->row()->name;
+    }
 }
  ?>

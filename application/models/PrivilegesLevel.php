@@ -172,5 +172,14 @@ class PrivilegesLevel extends CI_Model {
         return $this->db->affected_rows() > 0;
     }
 
+    public function get_modules_by_priviledge($id)
+    {   
+        $this->db->select('priv.modules');
+        $this->db->from('privileges_levels as priv');
+        $this->db->join('users as usez', 'usez.privilege_level = priv.id');
+        $this->db->where('usez.id', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
  ?>

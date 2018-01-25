@@ -6,7 +6,7 @@
             <?php echo breadcrumbs('', 'Import Member') ?>
             <div class="card-body card-padding">
 
-                <?php echo form_open_multipart("members/import", array('id'=>'dropzone', 'class'=>'dropzone m-t-25')); ?>
+                <?php echo form_open_multipart("members/import", array('id'=>'dropzone', 'class'=>'dropzone m-t-25', 'accept-charset'=>'utf-8')); ?>
                     <div class="fileinput fileinput-new fallback" data-provides="fileinput">
                         <span class="btn btn-primary btn-file m-r-10">
                             <span class="fileinput-new">Select file</span>
