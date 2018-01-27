@@ -14,7 +14,7 @@ class UsersController extends CI_Controller {
         $this->load->model('User', '', TRUE);
         $this->load->model('Privilege', '', TRUE);
         $this->load->model('PrivilegesLevel', '', TRUE);
-
+        $this->load->model('Module', '', TRUE);
         $this->user_id = $this->session->userdata('id');
 
         $this->Data['Headers'] = get_page_headers();

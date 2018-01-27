@@ -11,7 +11,8 @@ class MessageTemplatesController extends CI_Controller {
         parent::__construct();
         $this->validated();
         $this->load->model('MessageTemplate', '', TRUE);
-
+        $this->load->model('PrivilegesLevel', '', TRUE);
+        $this->load->model('Module', '', TRUE);
         $this->user_id = $this->session->userdata('id');
 
         $this->Data['Headers'] = get_page_headers();

@@ -20,7 +20,8 @@ class MembersController extends CI_Controller {
         $this->load->model('Schedule', '', TRUE);
         $this->load->model('Schoolyear', '', TRUE);
         $this->load->model('Enrollment', '', TRUE);
-
+        $this->load->model('PrivilegesLevel', '', TRUE);
+        $this->load->model('Module', '', TRUE);
         $this->user_id = $this->session->userdata('id');
         // $this->member_photo_url = "";
 

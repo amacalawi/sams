@@ -12,6 +12,8 @@ class PresetMessagesController extends CI_Controller {
         $this->validated();
 
         $this->load->model('PresetMessage', '', TRUE);
+        $this->load->model('PrivilegesLevel', '', TRUE);
+        $this->load->model('Module', '', TRUE);
 
         $this->user_id = $this->session->userdata('id');
 

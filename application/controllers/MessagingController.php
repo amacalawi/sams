@@ -18,6 +18,8 @@ class MessagingController extends CI_Controller {
         $this->load->model('Group', '', TRUE);
         $this->load->model('GroupMember', '', TRUE);
         $this->load->model('Scheduler', '', TRUE);
+        $this->load->model('PrivilegesLevel', '', TRUE);        
+        $this->load->model('Module', '', TRUE);
         $this->Data['Headers'] = get_page_headers();
 
 

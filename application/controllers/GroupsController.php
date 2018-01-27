@@ -15,7 +15,8 @@ class GroupsController extends CI_Controller {
         $this->load->model('Group', '', TRUE);
         $this->load->model('Member', '', TRUE);
         $this->load->model('GroupMember', '', TRUE);
-
+        $this->load->model('PrivilegesLevel', '', TRUE);
+        $this->load->model('Module', '', TRUE);
         $this->user_id = $this->session->userdata('id');
         $this->session->set_userdata('referred_from', current_url());
 

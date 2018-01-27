@@ -1,23 +1,22 @@
 <?php $this->load->model('Inbox', '', TRUE); ?>
 
 <ul class="main-menu">
-
+    
     <?php $modules = $this->PrivilegesLevel->get_modules_by_priviledge($this->session->userdata('id')); ?>
 
     <?php 
         $module_access = array();
-        $dashboard = array(1); 
-        $members = array(2,3,4,5); 
+        $members = array(1,8,9); 
         $enrollments = array(6,7,8,9); 
-        $messagings = array(10,11,12,13,14,15); 
-        $groups = array(16,17,18,19); 
-        $levels = array(20,21,22); 
-        $types = array(23,24,25); 
-        $schedules = array(26,27); 
-        $schoolyears = array(28,29,30); 
-        $monitors = array(31,32,33,34,35); 
-        $users = array(36,37,38); 
-        $managements = array(39,40,41); 
+        $messagings = array(37, 38, 39, 40, 41, 42, 43, 44, 45); 
+        $groups = array(10,17,18); 
+        $levels = array(28, 35, 36); 
+        $types = array(19, 26, 27); 
+        $schedules = array(65,66); 
+        $schoolyears = array(67); 
+        $monitors = array(68,69,70,71,72); 
+        $users = array(73,74,75); 
+        $managements = array(46,55,76); 
     ?>
 
     <?php foreach ($modules as $module ) { ?>
@@ -26,12 +25,6 @@
                 <?php $module_access[] = $module ?>
             <?php } ?> 
 
-    <?php } ?>
-
-    <?php if((count(array_intersect($module_access, $dashboard)) > 0)) { ?>
-        <li class="<?php echo check_link(''); ?>">
-            <?php echo anchor('', '<i class="zmdi zmdi-home"></i>Dashboard'); ?>
-        </li>
     <?php } ?>
 
     <li class="<?php echo check_link(''); ?>">
@@ -47,21 +40,7 @@
                         <li class="<?php echo check_link($this->Module->get_module_slug($member)) ?>"><?php echo anchor( base_url($this->Module->get_module_slug($member)), $this->Module->get_module_name($member) ); ?></li>
                     <?php } ?>
                 <?php } ?>
-                
-            </ul>
-        </li>
-    <?php } ?>
-    
-    <?php if((count(array_intersect($module_access, $enrollments)) > 0)) { ?>
-        <li class="sub-menu <?php echo check_link(['enrollments', 'enrollments/import', 'enrollments/export', 'enrollments/trash']) ?>">
-            <a role="button"><i class="zmdi zmdi-accounts"></i> Enrollments</a>
-            <ul>
-                <?php foreach ($enrollments as $enrollment) { ?>    
-                    <?php if(in_array($enrollment, $module_access)) { ?>
-                        <li class="<?php echo check_link($this->Module->get_module_slug($enrollment)) ?>"><?php echo anchor( base_url($this->Module->get_module_slug($enrollment)), $this->Module->get_module_name($enrollment) ); ?></li>
-                    <?php } ?>
-                <?php } ?>
-                
+                <li class="<?php echo check_link('members/trash') ?>"><?php echo anchor( base_url('members/trash'), 'Trashed members' ); ?></li>                
             </ul>
         </li>
     <?php } ?>
@@ -70,16 +49,16 @@
         <li class="sub-menu <?php echo check_link(['messaging/new', 'messaging/inbox', 'messaging/outbox', 'messaging/tracking', 'messaging/configuration', 'messaging/templates']) ?>">
         <a role="button"><i class="zmdi zmdi-email">&nbsp;</i>Messaging<?php echo Inbox::getUnreadCount() ? '<div style="left:29px;top:0;" class="notification-circle unread">'.Inbox::getUnreadCount().'</div>' : ''; ?></a>
             <ul>
-                <?php foreach ($messagings as $messaging) { ?>    
-                    <?php if(in_array($messaging, $module_access)) { ?>
-                        <li class="<?php echo check_link($this->Module->get_module_slug($messaging)) ?>"><?php echo anchor( base_url($this->Module->get_module_slug($messaging)), $this->Module->get_module_name($messaging) ); ?></li>
-                    <?php } ?>
-                <?php } ?>
-                
+            <li class="<?php echo check_link('messaging/new') ?>" ><?php echo anchor( base_url('messaging/new'), 'New' ); ?></li>
+                <li class="<?php echo check_link('messaging/inbox') ?>" ><?php echo anchor( base_url('messaging/inbox'), 'Inbox'.(Inbox::getUnreadCount() ? '<div style="left:83px;top:10px;" class="notification-circle indicator"></div>' : '') ); ?></li>
+                <li class="<?php echo check_link('messaging/outbox') ?>" ><?php echo anchor( base_url('messaging/outbox'), 'Outbox' ); ?></li>
+                <li class="<?php echo check_link('messaging/tracking') ?>" ><?php echo anchor( base_url('messaging/tracking'), 'Tracking' ); ?></li>
+                <li class="<?php echo check_link('messaging/templates') ?>" ><?php echo anchor( base_url('messaging/templates'), 'Templates' ); ?></li>
+                <li class="<?php echo check_link('messaging/configuration') ?>" ><?php echo anchor( base_url('messaging/configuration'), 'Configuration' ); ?></li>
             </ul>
         </li>
     <?php } ?>
-
+    
     <?php if((count(array_intersect($module_access, $groups)) > 0)) { ?>
         <li class="sub-menu <?php echo check_link(['groups', 'groups/import', 'groups/export', 'groups/trash']) ?>">
             <a role="button"><i class="zmdi zmdi-accounts"></i> Groups</a>
@@ -144,8 +123,7 @@
                     <?php if(in_array($schoolyear, $module_access)) { ?>
                         <li class="<?php echo check_link($this->Module->get_module_slug($schoolyear)) ?>"><?php echo anchor( base_url($this->Module->get_module_slug($schoolyear)), $this->Module->get_module_name($schoolyear) ); ?></li>
                     <?php } ?>
-                <?php } ?>
-                
+                <?php } ?>                
             </ul>
         </li>
     <?php } ?>
@@ -191,4 +169,5 @@
             </ul>
         </li>
     <?php } ?>
+
 </ul>

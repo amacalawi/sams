@@ -8,6 +8,8 @@ class GateController extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('PrivilegesLevel', '', TRUE);
+        $this->load->model('Module', '', TRUE);
         $this->Data['Headers'] = get_page_headers();
         $this->validated();
 
