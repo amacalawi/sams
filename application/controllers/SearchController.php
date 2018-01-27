@@ -9,6 +9,8 @@ class SearchController extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Search', '', TRUE);
+        $this->load->model('PrivilegesLevel', '', TRUE);
+        $this->load->model('Module', '', TRUE);
     }
 
     public function contacts($wildcard=null)

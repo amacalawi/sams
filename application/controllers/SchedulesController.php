@@ -14,7 +14,9 @@ class SchedulesController extends CI_Controller {
 
         $this->load->model('Schedule', '', TRUE);
         $this->load->model('MessageTemplate', '', TRUE);
-
+        $this->load->model('PrivilegesLevel', '', TRUE);
+        $this->load->model('Module', '', TRUE);
+        
         $this->Data['Headers'] = get_page_headers();
         $this->Data['Headers']->CSS = '<link rel="stylesheet" href="'.base_url('assets/vendors/bootgrid/jquery.bootgrid.min.css').'">';
         $this->Data['Headers']->CSS.= '<link rel="stylesheet" href="'.base_url('assets/vendors/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css').'">';

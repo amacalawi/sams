@@ -14,7 +14,8 @@ class MonitorController extends CI_Controller {
         $this->load->model('Monitor', '', TRUE);
         $this->load->model('Monitor_New', '', TRUE);
         $this->load->model('Member', '', TRUE);
-
+        $this->load->model('PrivilegesLevel', '', TRUE);
+        $this->load->model('Module', '', TRUE);
         $this->user_id = $this->session->userdata('id');
 
         $this->Data['Headers'] = get_page_headers();

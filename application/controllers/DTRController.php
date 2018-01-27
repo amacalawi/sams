@@ -17,6 +17,8 @@ class DTRController extends CI_Controller {
         $this->load->model('Message', '', TRUE);
 		$this->load->model('DTR', '', TRUE);
 		$this->load->model('Outbox', '', TRUE);
+		$this->load->model('PrivilegesLevel', '', TRUE);
+		$this->load->model('Module', '', TRUE);
         $this->user_id = $this->session->userdata('id');
 
         $this->Data['Headers'] = get_page_headers();

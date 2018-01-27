@@ -12,7 +12,8 @@ class InboxController extends CI_Controller {
 
         $this->load->model('Inbox', '', TRUE);
         $this->load->model('Member', '', TRUE);
-
+        $this->load->model('PrivilegesLevel', '', TRUE);
+        $this->load->model('Module', '', TRUE);
         $this->user_id = $this->session->userdata('id');
 
         $this->Data['Headers'] = get_page_headers();

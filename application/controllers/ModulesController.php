@@ -11,6 +11,7 @@ class ModulesController extends CI_Controller {
         $this->validated();
 
         $this->load->model('Module', '', TRUE);
+        $this->load->model('PrivilegesLevel', '', TRUE);
 
         $this->user_id = $this->session->userdata('id');
 

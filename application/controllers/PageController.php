@@ -13,7 +13,7 @@ class PageController extends CI_Controller {
         $this->load->model('PrivilegesLevel', '', TRUE);
         $this->load->model('Privilege', '', TRUE);
         $this->load->model('User', '', TRUE);
-
+        
         $this->Data['Headers'] = get_page_headers();
         $this->Data['Headers']->CSS .= '<link rel="stylesheet" href="'.base_url('assets/vendors/ducksboard-gridster/dist/jquery.gridster.min.css').'">';
         $this->Data['Headers']->JS  = '<script src="'.base_url('assets/vendors/ducksboard-gridster/dist/jquery.gridster.min.js').'"></script>';

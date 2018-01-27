@@ -10,7 +10,8 @@ class DeviceController extends CI_Controller
         parent::__construct();
         $this->load->model('Device', '', TRUE);
         $this->load->model('Gate', '', TRUE);
-
+        $this->load->model('PrivilegesLevel', '', TRUE);
+        $this->load->model('Module', '', TRUE);
         $this->Data['Headers'] = get_page_headers();
         $this->validated();
 

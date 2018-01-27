@@ -16,6 +16,8 @@ class SchedulerController extends CI_Controller {
         $this->load->model('Outbox', '', TRUE);
         $this->load->model('Member', '', TRUE);
         $this->load->model('GroupMember', '', TRUE);
+        $this->load->model('PrivilegesLevel', '', TRUE);
+        $this->load->model('Module', '', TRUE);
     }
 
     public function validated()

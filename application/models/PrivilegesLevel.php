@@ -178,6 +178,7 @@ class PrivilegesLevel extends CI_Model {
         $this->db->from('privileges_levels as priv');
         $this->db->join('users as usez', 'usez.privilege_level = priv.id');
         $this->db->where('usez.id', $id);
+        $this->db->group_by('priv.id');
         $query = $this->db->get();
         return $query->result();
     }
