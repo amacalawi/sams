@@ -351,23 +351,27 @@ class Member extends CI_Model {
 
             if($level == 0)
             {
-                $this->db->select('members.id, members.stud_no, members.firstname, members.middlename, members.lastname, members.birthdate, members.nick, members.level, members.type, members.address_blockno, members.address_street, members.address_brgy, members.address_city, members.address_zip, members.telephone, members.msisdn, members.email, schedules.code as schedule')->where("members.created_at BETWEEN '".$start_date." 00:00:00' AND '".$end_date." 23:59:59'")
-                    ->join('levels', 'members.level', 'levels.id')
-                    ->join('schedules', 'schedules.id', 'members.schedule');
-                $this->db->group_by('members.id');
-                $this->db->where("members.".$this->column_softDelete, NULL);
-                $query = $this->db->get($this->table);
+                $this->db->select('mem.id, mem.stud_no, mem.firstname, mem.middlename, mem.lastname, mem.birthdate, mem.nick, mem.level, mem.type, mem.address_blockno, mem.address_street, mem.address_brgy, mem.address_city, mem.address_zip, mem.telephone, mem.msisdn, mem.email, sched.code as schedule');
+                $this->db->from($this->table.' as mem');
+                $this->db->join('levels as lvl', 'mem.level = lvl.levels_id');
+                $this->db->join('schedules as sched', 'mem.schedule_id = sched.id');                
+                $this->db->where("mem.created_at BETWEEN '".$start_date." 00:00:00' AND '".$end_date." 23:59:59'");
+                $this->db->where("mem.".$this->column_softDelete, NULL);
+                $this->db->group_by('mem.id');
+                $query = $this->db->get();
             } 
             else 
-            {
-                $this->db->select('members.id, members.stud_no, members.firstname, members.middlename, members.lastname, members.birthdate, members.nick, members.level, members.type, members.address_blockno, members.address_street, members.address_brgy, members.address_city, members.address_zip, members.telephone, members.msisdn, members.email, schedules.code as schedule')->where("members.created_at BETWEEN '".$start_date." 00:00:00' AND '".$end_date." 23:59:59'")
-                    ->join('levels', 'members.level', 'levels.id')
-                    ->join('schedules', 'schedules.id', 'members.schedule');
-                $this->db->where("members.".$this->column_softDelete, NULL);
+            {   
+                $this->db->select('mem.id, mem.stud_no, mem.firstname, mem.middlename, mem.lastname, mem.birthdate, mem.nick, mem.level, mem.type, mem.address_blockno, mem.address_street, mem.address_brgy, mem.address_city, mem.address_zip, mem.telephone, mem.msisdn, mem.email, sched.code as schedule');
+                $this->db->from($this->table.' as mem');
+                $this->db->join('levels as lvl', 'mem.level = lvl.levels_id');
+                $this->db->join('schedules as sched', 'mem.schedule_id = sched.id');
+                $this->db->where("mem.created_at BETWEEN '".$start_date." 00:00:00' AND '".$end_date." 23:59:59'");
+                $this->db->where("mem.".$this->column_softDelete, NULL);
                 if( null != $level && 0 != $level ) 
-                $this->db->where('level', $level);
-                $this->db->group_by('members.id');
-                $query = $this->db->get($this->table);
+                $this->db->where('mem.level', $level);
+                $this->db->group_by('mem.id');
+                $query = $this->db->get();
             }
 
             foreach($query->result() as $row)
@@ -375,14 +379,15 @@ class Member extends CI_Model {
                 fputcsv($output, array($row->stud_no, $row->firstname, $row->middlename, $row->lastname, $row->birthdate, $row->nick, $row->level, $row->type, $row->address_blockno, $row->address_street, $row->address_brgy, $row->address_city, $row->address_city, $row->telephone, $row->msisdn, $row->email, $this->get_groups($row->id), $row->schedule));
             }
         }
-        else {            
-            $this->db->select('members.stud_no, members.firstname, members.middlename, members.lastname, members.birthdate, members.nick, members.level, members.type, members.address_blockno, members.address_street, members.address_brgy, members.address_city, members.address_zip, members.telephone, members.msisdn, members.email, schedules.code as schedule')
-            ->where("members.created_at BETWEEN '".$start_date." 00:00:00' AND '".$end_date." 23:59:59'")
-            ->join('levels', 'members.level', 'levels.id')
-            ->join('schedules', 'schedules.id', 'members.schedule');
-            $this->db->where("members.".$this->column_softDelete, NULL);
-            if( null != $level && 0 != $level ) $this->db->where('level', $level);
-            return $this->db->get($this->table);
+        else {      
+             $this->db->select('mem.id, mem.stud_no, mem.firstname, mem.middlename, mem.lastname, mem.birthdate, mem.nick, mem.level, mem.type, mem.address_blockno, mem.address_street, mem.address_brgy, mem.address_city, mem.address_zip, mem.telephone, mem.msisdn, mem.email, sched.code as schedule');
+                $this->db->from($this->table.' as mem');
+                $this->db->join('levels as lvl', 'mem.level = lvl.levels_id');
+                $this->db->join('schedules as sched', 'mem.schedule_id = sched.id');
+                $this->db->where("mem.created_at BETWEEN '".$start_date." 00:00:00' AND '".$end_date." 23:59:59'");
+            $this->db->where("mem.".$this->column_softDelete, NULL);
+            if( null != $level && 0 != $level ) $this->db->where('mem.level', $level);
+            return $this->db->get();
         }
     }
 
