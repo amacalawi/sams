@@ -97,8 +97,10 @@ class DBAccess extends BaseModel
     function send($id,$msisdn,$smsc,$body,$memid=''){
         $d = Array();
         $d['message_id'] = $id;
+	if ($memid != ''){
         $d['member_id'] = $memid;
-        $d['msisdn']     = $msisdn;
+        }
+	$d['msisdn']     = $msisdn;
         $d['smsc']       = ($smsc) ? $smsc : 'smart';
     //    $d['created_on'] ="NOW()";
         $d['status'] ='pending';
