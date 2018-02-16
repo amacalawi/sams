@@ -185,7 +185,7 @@ class DBAccess extends BaseModel
     function get_members_group($memid){
         $sql = "SELECT g.groups_name FROM `members` mem 
                 JOIN `group_members` gm ON gm.member_id = mem.id 
-                LEFT JOIN `groups` g ON g.groups_id = gm.groups_id where mem.id = '$memid'";
+                LEFT JOIN `groups` g ON g.groups_id = gm.group_id where mem.id = '$memid'";
         $res = $this->return_one($sql);
         return $res;
     }

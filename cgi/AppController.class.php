@@ -14,7 +14,7 @@ class AppController
             $members = $this->db->group_members(trim($m[1]));
             if (count($members) < 1) {
                 $msg = str_replace('::group::',$m[1], $this->db->get_tmpl('group_does_not_exist'));
-                $this->db->send_sms('',$details['msisdn'], $msg ,$details['smsc'] ); die();
+                $this->db->send_sms($sender_id,$details['msisdn'], $msg ,$details['smsc'] ); die();
                 exit();
             }
             $dt['message']     = $m[2] ."-". $sender_name ."(". $sender_id . ")" ;
