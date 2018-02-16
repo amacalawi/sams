@@ -804,7 +804,7 @@ class MembersController extends CI_Controller {
                                 'stud_no' => trim($data[0]),
                                 'firstname' => trim($data[1]),
                                 'middlename' => trim($data[2]),
-                                'lastname' => mysql_real_escape_string(trim($data[3])),
+                                'lastname' => trim($data[3]),
                                 'birthdate' => trim($data[4]),
                                 'nick' => trim($data[5]),
                                 'level' => trim($data[6]),
