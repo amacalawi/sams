@@ -805,7 +805,7 @@ class MembersController extends CI_Controller {
                                 'firstname' => trim($data[1]),
                                 'middlename' => trim($data[2]),
                                 'lastname' => trim($data[3]),
-                                'birthdate' => trim($data[4]),
+                                'birthdate' => (trim($data[4]) !== NULL) ? trim($data[4]) : '0000-00-00',
                                 'nick' => trim($data[5]),
                                 'level' => trim($data[6]),
                                 'type' => trim($data[7]),
