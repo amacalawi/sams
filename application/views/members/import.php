@@ -29,6 +29,7 @@
                             <th data-column-id="count_id"           data-visible="true" data-type="numeric" data-sortable="false">#</th>
                             <th data-column-id="id"        data-css-class="id" data-order="asc" data-visible="false" data-identifier="true">Member ID</th>
                             <th data-column-id="fullname" data-css-class="fullname" data-order="asc">Name</th>
+                            <th data-column-id="gender"     data-css-class="gender" data-order="asc">Gender</th>
                             <th data-column-id="level"     data-css-class="level" data-order="asc">Level</th>
                             <th data-column-id="type"      data-css-class="type" data-order="asc">Type</th>
                             <th data-column-id="groups"     data-css-class="groups" data-order="asc">Group</th>
