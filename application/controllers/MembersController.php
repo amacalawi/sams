@@ -67,10 +67,16 @@ class MembersController extends CI_Controller {
             $this->load->view('layouts/errors', $this->Data);
         }
 
+        $array_gender = array(
+            'Male' => 'Male',
+            'Female' => 'Female'
+        );
+
         $this->Data['members'] = $this->Member->all();
         $this->Data['form']['studentsnumber_list'] = dropdown_list($this->Member->dropdown_list('stud_no, stud_no')->result_array(), ['stud_no', 'stud_no'], '', false);
         $this->Data['form']['groups_list'] = dropdown_list($this->Group->dropdown_list('groups_id, groups_name')->result_array(), ['groups_id', 'groups_name'], '', false);
         $this->Data['form']['levels_list'] = dropdown_list($this->Level->dropdown_list('levels_id, levels_name')->result_array(), ['levels_id', 'levels_name'], '', false);
+        $this->Data['form']['gender_list'] = $array_gender;
         $this->Data['form']['types_list']  = dropdown_list($this->Type->dropdown_list('types_id, types_name')->result_array(), ['types_id', 'types_name'], '', false);
         $this->Data['trash']['count'] = $this->Member->get_all(0, 0, null, true)->num_rows();
         $this->Data['form']['schedules_list'] = dropdown_list($this->Schedule->dropdown_list('id, name')->result_array(), ['id', 'name'], '', false);
@@ -156,6 +162,7 @@ class MembersController extends CI_Controller {
                     'avatar'    => '<img src=\''.$member['avatar'].'\' />',
         		    'stud_no'   => $member['stud_no'],
                     'fullname'  => arraytostring([$member['firstname'], $member['middlename'] ? substr($member['middlename'], 0,1) . '.' : '', html_entity_decode(htmlentities($member['lastname']))], ' '),
+                    'gender'    => $member['gender'],
                     'level'     => $levels_name_arr ? arraytostring($levels_name_arr, ", ") : '',
                     'levels_id' => $levels_id_arr ? $levels_id_arr : '',
                     'type'      => $types_name_arr ? arraytostring($types_name_arr, ", ") : '',
@@ -233,6 +240,7 @@ class MembersController extends CI_Controller {
                         'firstname'    => $this->input->post('firstname'),
                         'middlename'   => $this->input->post('middlename'),
                         'lastname'     => $this->input->post('lastname'),
+                        'gender'       => $this->input->post('gender'),
                         'level'        => $this->input->post('level') ? arraytoimplode($this->input->post('level')) : NULL,
                         'type'         => arraytoimplode($this->input->post('type')),
                         'address_blockno'      => $this->input->post('address_blockno'),
@@ -593,6 +601,7 @@ class MembersController extends CI_Controller {
                 'firstname' => $this->input->post('firstname'),
                 'middlename' => $this->input->post('middlename'),
                 'lastname' => $this->input->post('lastname'),
+                'gender' => $this->input->post('gender'),
                 'level' => $this->input->post('level') ? arraytoimplode( $this->input->post('level') ) : NULL,
                 'type' => arraytoimplode( $this->input->post('type') ),
                 'address_blockno' => $this->input->post('address_blockno'),
@@ -796,7 +805,7 @@ class MembersController extends CI_Controller {
                         $num = count($data);
                         $row++;
 
-                        $mobile_num = (trim($data[14][0]) != '0') ? "0".trim($data[14]) : trim($data[14]);
+                        $mobile_num = (trim($data[15][0]) != '0') ? "0".trim($data[15]) : trim($data[15]);
 
                         if($row > 1) 
                         {
@@ -809,18 +818,19 @@ class MembersController extends CI_Controller {
                                 'lastname' => trim($data[3]),
                                 'birthdate' => (trim($data[4]) != '') ? trim($data[4]) : '0000-00-00',
                                 'nick' => trim($data[5]),
-                                'level' => trim($data[6]),
-                                'type' => trim($data[7]),
-                                'address_blockno' => trim($data[8]),
-                                'address_street' => trim($data[9]),
-                                'address_brgy' => trim($data[10]),
-                                'address_city' => trim($data[11]),
-                                'address_zip' => trim($data[12]),
-                                'telephone' => trim($data[13]),
+                                'gender' => trim($data[6]),
+                                'level' => trim($data[7]),
+                                'type' => trim($data[8]),
+                                'address_blockno' => trim($data[9]),
+                                'address_street' => trim($data[10]),
+                                'address_brgy' => trim($data[11]),
+                                'address_city' => trim($data[12]),
+                                'address_zip' => trim($data[13]),
+                                'telephone' => trim($data[14]),
                                 'msisdn' => $mobile_num,
-                                'email' => trim($data[15]),
+                                'email' => trim($data[16]),
                                 // 'groups' => trim($data[16]),
-                                'schedule_id' => $this->Schedule->get_schedule_id(trim($data[17])),
+                                'schedule_id' => $this->Schedule->get_schedule_id(trim($data[18])),
                                 'active' => 0
                             );
 
