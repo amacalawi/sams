@@ -796,6 +796,8 @@ class MembersController extends CI_Controller {
                         $num = count($data);
                         $row++;
 
+                        $mobile_num = (trim($data[14][0]) != '0') ? "0".trim($data[14]) : trim($data[14]);
+
                         if($row > 1) 
                         {
                             $exist = $this->Member->check_if_exist(trim($data[0]));
@@ -815,7 +817,7 @@ class MembersController extends CI_Controller {
                                 'address_city' => trim($data[11]),
                                 'address_zip' => trim($data[12]),
                                 'telephone' => trim($data[13]),
-                                'msisdn' => "0".trim($data[14]),
+                                'msisdn' => $mobile_num,
                                 'email' => trim($data[15]),
                                 // 'groups' => trim($data[16]),
                                 'schedule_id' => $this->Schedule->get_schedule_id(trim($data[17])),
