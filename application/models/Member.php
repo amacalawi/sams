@@ -347,11 +347,11 @@ class Member extends CI_Model {
 
             $output = fopen('php://output', 'w');
 
-            fputcsv($output, array('Student No', 'Firstname', 'Middlename', 'Lastname', 'Birthdate', 'Nickname', 'Level', 'Type', 'Block No', 'Street', 'Barangay' , 'City', 'Zip Code', 'Telephone', 'MSISDN', 'Email Address', 'Groups', 'Schedules'));
+            fputcsv($output, array('Student No', 'Firstname', 'Middlename', 'Lastname', 'Birthdate', 'Nickname', 'Gender', 'Level', 'Type', 'Block No', 'Street', 'Barangay' , 'City', 'Zip Code', 'Telephone', 'MSISDN', 'Email Address', 'Groups', 'Schedules'));
 
             if($level == 0)
             {
-                $this->db->select('mem.id, mem.stud_no, mem.firstname, mem.middlename, mem.lastname, mem.birthdate, mem.nick, mem.level, mem.type, mem.address_blockno, mem.address_street, mem.address_brgy, mem.address_city, mem.address_zip, mem.telephone, mem.msisdn, mem.email, sched.code as schedule');
+                $this->db->select('mem.id, mem.stud_no, mem.firstname, mem.middlename, mem.lastname, mem.birthdate, mem.nick, mem.gender, mem.level, mem.type, mem.address_blockno, mem.address_street, mem.address_brgy, mem.address_city, mem.address_zip, mem.telephone, mem.msisdn, mem.email, sched.code as schedule');
                 $this->db->from($this->table.' as mem');
                 $this->db->join('levels as lvl', 'mem.level = lvl.levels_id');
                 $this->db->join('schedules as sched', 'mem.schedule_id = sched.id');                
@@ -362,7 +362,7 @@ class Member extends CI_Model {
             } 
             else 
             {   
-                $this->db->select('mem.id, mem.stud_no, mem.firstname, mem.middlename, mem.lastname, mem.birthdate, mem.nick, mem.level, mem.type, mem.address_blockno, mem.address_street, mem.address_brgy, mem.address_city, mem.address_zip, mem.telephone, mem.msisdn, mem.email, sched.code as schedule');
+                $this->db->select('mem.id, mem.stud_no, mem.firstname, mem.middlename, mem.lastname, mem.birthdate, mem.nick, mem.gender, mem.level, mem.type, mem.address_blockno, mem.address_street, mem.address_brgy, mem.address_city, mem.address_zip, mem.telephone, mem.msisdn, mem.email, sched.code as schedule');
                 $this->db->from($this->table.' as mem');
                 $this->db->join('levels as lvl', 'mem.level = lvl.levels_id');
                 $this->db->join('schedules as sched', 'mem.schedule_id = sched.id');
@@ -376,11 +376,11 @@ class Member extends CI_Model {
 
             foreach($query->result() as $row)
             {
-                fputcsv($output, array($row->stud_no, $row->firstname, $row->middlename, $row->lastname, $row->birthdate, $row->nick, $row->level, $row->type, $row->address_blockno, $row->address_street, $row->address_brgy, $row->address_city, $row->address_city, $row->telephone, $row->msisdn, $row->email, $this->get_groups($row->id), $row->schedule));
+                fputcsv($output, array($row->stud_no, $row->firstname, $row->middlename, $row->lastname, $row->birthdate, $row->nick, $row->gender, $row->level, $row->type, $row->address_blockno, $row->address_street, $row->address_brgy, $row->address_city, $row->address_city, $row->telephone, $row->msisdn, $row->email, $this->get_groups($row->id), $row->schedule));
             }
         }
         else {      
-             $this->db->select('mem.id, mem.stud_no, mem.firstname, mem.middlename, mem.lastname, mem.birthdate, mem.nick, mem.level, mem.type, mem.address_blockno, mem.address_street, mem.address_brgy, mem.address_city, mem.address_zip, mem.telephone, mem.msisdn, mem.email, sched.code as schedule');
+             $this->db->select('mem.id, mem.stud_no, mem.firstname, mem.middlename, mem.lastname, mem.birthdate, mem.nick, mem.gender, mem.level, mem.type, mem.address_blockno, mem.address_street, mem.address_brgy, mem.address_city, mem.address_zip, mem.telephone, mem.msisdn, mem.email, sched.code as schedule');
                 $this->db->from($this->table.' as mem');
                 $this->db->join('levels as lvl', 'mem.level = lvl.levels_id');
                 $this->db->join('schedules as sched', 'mem.schedule_id = sched.id');

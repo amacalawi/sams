@@ -104,7 +104,18 @@
 
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-4 m-b-20">
+                                <div class="col-md-6 m-b-20">
+                                    <div class="pad-zero-right">
+                                        <div class="form-group fg-float form-group-validation">
+                                            <?php echo form_label('Gender', 'gender', array('class'=>'c-black f-500 text-uppercase m-b-5')) ?>
+                                            <?php echo form_dropdown('gender',
+                                                $form['gender_list'],
+                                                set_value(''), 'class="tag-select"'
+                                            ) ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 m-b-20">
                                     <div class="pad-zero-right">
                                         <div class="form-group fg-float form-group-validation">
                                             <?php echo form_label('Level', 'level', array('class'=>'c-black f-500 text-uppercase m-b-5')) ?>
@@ -115,7 +126,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 m-b-20">
+                                <div class="col-md-6 m-b-20">
                                     <div class="pad-zero-right">
                                         <div class="form-group fg-float form-group-validation">
                                             <?php echo form_label('Type', 'type', array('class'=>'c-black f-500 text-uppercase m-b-5')) ?>
@@ -126,7 +137,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 m-b-20">
+                                <div class="col-md-6 m-b-20">
                                     <div class="pad-zero-right">
                                         <div class="form-group fg-float form-group-validation">
                                             <?php echo form_label('Group', 'groups[]', array('class'=>'c-black f-500 text-uppercase m-b-5')) ?>

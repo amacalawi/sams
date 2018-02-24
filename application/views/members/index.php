@@ -22,13 +22,14 @@
                             <th data-column-id="id"        data-css-class="id" data-order="asc" data-visible="false" data-identifier="true">ID</th>
                             <th data-column-id="avatar"        data-css-class="avatar" data-order="asc" data-visible="true" data-identifier="true">Photo</th>
                             <th data-column-id="stud_no" data-css-class="stud_no" data-order="asc" data-visible="true">Student No.</th>
-			    <th data-column-id="fullname" data-css-class="fullname" data-order="asc">Name</th>
+			                <th data-column-id="fullname" data-css-class="fullname" data-order="asc">Name</th>
+                            <th data-column-id="gender"     data-css-class="gender" data-order="asc">Gender</th>
                             <th data-column-id="level"     data-css-class="level" data-order="asc">Level</th>
                             <th data-column-id="type"      data-css-class="type" data-order="asc">Type</th>
                             <th data-column-id="groups"     data-css-class="groups" data-order="asc">Group</th>
                             <th data-column-id="email"     data-css-class="email" data-order="asc">Email</th>
                             <th data-column-id="msisdn"    data-css-class="msisdn" data-order="asc">Mobile</th>
-                            <th data-column-id="telephone" data-css-class="telephone" data-order="asc" data-visible="false">Telephone</th>
+                            <th data-column-id="telephone" data-css-class="telephone" data-order="asc"  fdata-visible="false">Telephone</th>
                             <th data-column-id="address"   data-css-class="address" data-sortable="false" data-visible="false">Address</th>
                             <th data-column-id="commands" data-formatter="commands" data-sortable="false" data-header-css-class="fixed-width">Actions</th>
                         </tr>
