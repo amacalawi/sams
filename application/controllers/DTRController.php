@@ -117,9 +117,9 @@ class DTRController extends CI_Controller {
 				}
 			}
 
-			$mobile_nums = explode(', ',$this->Member->find($stud_no, "stud_no", "msisdn")->msisdn);
+			// $mobile_nums = explode(', ', $this->Member->find($stud_no, "stud_no", "msisdn")->msisdn);
 				
-			foreach ($mobile_nums as $mobile_num) {
+			// foreach ($mobile_nums as $mobile_num) {
 				# Send
 				$send_data = array(
 				    "stud_no" => $stud_no,
@@ -127,13 +127,13 @@ class DTRController extends CI_Controller {
 				    "mode" => $e_mode,
 				    "date" => date("M-d-y", strtotime($e_date)),
 				    "time" => date("H:i:s", strtotime($e_time)),
-				    "msisdn" => $mobile_num,
+				    "msisdn" => $this->Member->find($stud_no, "stud_no", "msisdn")->msisdn,
 				    "is_timein" => $is_timein,
 				    "is_timeout" => $is_timeout,
 				    "schedule_id" => $this->Member->find($stud_no, "stud_no", "schedule_id")->schedule_id,
 				);
 				echo $this->execute($send_data);
-			}
+			// }
 		}
     }
 
@@ -191,7 +191,7 @@ class DTRController extends CI_Controller {
 
 		$body = $detokenized;
 		// $msisdns = $data['msisdn'];
-		$msisdns = explode(',', $data['msisdn']);
+		$msisdns = explode(', ', $data['msisdn']);
 
 		foreach ($msisdns as $msisdn) 
 		{
