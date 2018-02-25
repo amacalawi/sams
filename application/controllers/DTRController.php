@@ -117,7 +117,7 @@ class DTRController extends CI_Controller {
 				}
 			}
 
-			$mobile_nums = explode(',',$this->Member->find($stud_no, "stud_no", "msisdn")->msisdn);
+			$mobile_nums = explode(', ',$this->Member->find($stud_no, "stud_no", "msisdn")->msisdn);
 				
 			foreach ($mobile_nums as $mobile_num) {
 				# Send
@@ -127,7 +127,7 @@ class DTRController extends CI_Controller {
 				    "mode" => $e_mode,
 				    "date" => date("M-d-y", strtotime($e_date)),
 				    "time" => date("H:i:s", strtotime($e_time)),
-				    "msisdn" => $this->Member->find($stud_no, "stud_no", "msisdn")->msisdn,
+				    "msisdn" => $mobile_num,
 				    "is_timein" => $is_timein,
 				    "is_timeout" => $is_timeout,
 				    "schedule_id" => $this->Member->find($stud_no, "stud_no", "schedule_id")->schedule_id,
