@@ -191,7 +191,7 @@ class DTRController extends CI_Controller {
 
 		$body = $detokenized;
 		// $msisdns = $data['msisdn'];
-		$msisdns = explode(', ', $data['msisdn']);
+		$msisdns = explode(',', $data['msisdn']);
 
 		foreach ($msisdns as $msisdn) 
 		{
@@ -248,7 +248,8 @@ class DTRController extends CI_Controller {
 			# Send to $msisdn if we have a message
 			if (null != $message_id) {
 				//$members = $this->Member->find_member_via_msisdn($msisdn);
-				$members = $this->Member->find_member_via_msisdn2($msisdn, $data['stud_no']);
+				$members = $this->Member->find_member_via_msisdn2($data['msisdn'], $data['stud_no']);
+
 				foreach ($members as $member) {
 				    $outbox = array(
 				    	'message_id' => $message_id,
@@ -262,6 +263,8 @@ class DTRController extends CI_Controller {
 				    $this->Message->send($outbox_id, $msisdn, $this->Message->get_network($msisdn), $body);
 				    echo "Message was sent to $msisdn\n<br>";
 				}
+
+				
 			}
 		}
 
