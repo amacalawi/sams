@@ -117,19 +117,23 @@ class DTRController extends CI_Controller {
 				}
 			}
 
-			# Send
-			$send_data = array(
-			    "stud_no" => $stud_no,
-			    "stud_name" => $this->Member->find($stud_no, "stud_no", "CONCAT(firstname, ' ', lastname) AS fullname")->fullname,
-			    "mode" => $e_mode,
-			    "date" => date("M-d-y", strtotime($e_date)),
-			    "time" => date("H:i:s", strtotime($e_time)),
-			    "msisdn" => $this->Member->find($stud_no, "stud_no", "msisdn")->msisdn,
-			    "is_timein" => $is_timein,
-			    "is_timeout" => $is_timeout,
-			    "schedule_id" => $this->Member->find($stud_no, "stud_no", "schedule_id")->schedule_id,
-			);
-			echo $this->execute($send_data);
+			$mobile_nums = explode(',',$this->Member->find($stud_no, "stud_no", "msisdn")->msisdn);
+				
+			foreach ($mobile_nums as $mobile_num) {
+				# Send
+				$send_data = array(
+				    "stud_no" => $stud_no,
+				    "stud_name" => $this->Member->find($stud_no, "stud_no", "CONCAT(firstname, ' ', lastname) AS fullname")->fullname,
+				    "mode" => $e_mode,
+				    "date" => date("M-d-y", strtotime($e_date)),
+				    "time" => date("H:i:s", strtotime($e_time)),
+				    "msisdn" => $this->Member->find($stud_no, "stud_no", "msisdn")->msisdn,
+				    "is_timein" => $is_timein,
+				    "is_timeout" => $is_timeout,
+				    "schedule_id" => $this->Member->find($stud_no, "stud_no", "schedule_id")->schedule_id,
+				);
+				echo $this->execute($send_data);
+			}
 		}
     }
 
