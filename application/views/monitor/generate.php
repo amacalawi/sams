@@ -1,7 +1,10 @@
 <section id="content" class="<?php echo $this->router->fetch_method(); ?>">
 
+<?php if($_GET['type']=="Monthly") { ?>
+    <div class="container-fluid invoice-landscape">
+<?php } else { ?>
     <div class="container invoice">
-
+<?php } ?>
         <div class="block-header">
             <h2>
                 Monitor
@@ -75,9 +78,8 @@
                         if(isset($_GET['type']) &&($_GET['type']=="Summary")):
                     ?>  
                         <?php include __DIR__ . '/generate-summary.php' ?>
-
-                       
-
+                    <?php elseif (isset($_GET['type']) &&($_GET['type']=="Monthly")): ?>
+                        <?php include __DIR__ . '/generate-monthly.php' ?>
                     <?php elseif (isset($_GET['type']) &&($_GET['type']=="Absents_Only")): ?>
                         <?php include __DIR__ . '/generate-absent.php' ?>
 

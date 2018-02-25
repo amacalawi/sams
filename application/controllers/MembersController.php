@@ -849,7 +849,7 @@ class MembersController extends CI_Controller {
 
                             if( null !== $data[16])
                             {   
-                                foreach(explode(", ", trim($data[16])) as $item)
+                                foreach(explode(", ", trim($data[17])) as $item)
                                 {   
                                     $group_check = $this->Group->check_if_group_exist($item);
 

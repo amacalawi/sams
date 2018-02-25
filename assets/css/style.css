@@ -572,3 +572,34 @@ table tr td {
 
 margin-bottom: 20px;
 }
+
+.align-horizontal {
+	font-size: 10px;
+}
+.align-horizontal-holder {
+	width: auto;
+	min-width: 30px;
+}
+.align-horizontal-holder:last-child {
+	padding-right: 10px !important;
+}
+
+.invoice-landscape th.legends, 
+.invoice-landscape td.legends {
+	background: #fffcbe;
+}
+
+/*.align-horizontal-holder {
+	width: 30px !important;
+	height: 150px;
+	text-align: center;
+}
+
+.align-horizontal {
+	transform: rotate(-90deg) !important;	
+	white-space: nowrap;
+    width: 100px;
+    text-align: center;
+    /*margin-top: 90px;
+}*/
+

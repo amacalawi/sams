@@ -19,7 +19,6 @@ class MonitorController extends CI_Controller {
         $this->user_id = $this->session->userdata('id');
 
         $this->Data['Headers'] = get_page_headers();
-
         $this->Data['Headers']->CSS = '<link rel="stylesheet" href="'.base_url('assets/vendors/bootgrid/jquery.bootgrid.min.css').'">';
         $this->Data['Headers']->CSS.= '<link rel="stylesheet" href="'.base_url('assets/vendors/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css').'">';
         $this->Data['Headers']->CSS.= '<link rel="stylesheet" href="'.base_url('assets/vendors/chosen/chosen.min.css').'">';
@@ -49,6 +48,7 @@ class MonitorController extends CI_Controller {
     {
 
     }
+
     public function announcement_listing($add = null)
     {
         $data['announcements'] = $this->Monitor->all_announcements();

@@ -98,6 +98,7 @@ class Monitor_New extends CI_Model {
                 $this->db->select('mem.id, mem.stud_no');
                 $this->db->from('members as mem');
                 $this->db->where('mem.id', $d);
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.firstname', $f);
                 $query = $this->db->get();
                 return $query->result();
@@ -108,6 +109,7 @@ class Monitor_New extends CI_Model {
                 $this->db->from('members as mem');
                 $this->db->join('levels as lv', 'mem.level = lv.levels_id');
                 $this->db->where('lv.levels_id', $d);
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.firstname', $f);
                 $query = $this->db->get();
                 return $query->result();
@@ -119,6 +121,7 @@ class Monitor_New extends CI_Model {
                 $this->db->join('group_members as gpm', 'mem.id = gpm.member_id');
                 $this->db->join('groups as gp', 'gpm.group_id = gp.groups_id');
                 $this->db->where('gp.groups_id', $d);
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.firstname', $f);
                 $query = $this->db->get();
                 return $query->result();
@@ -128,6 +131,53 @@ class Monitor_New extends CI_Model {
                 $this->db->select('mem.id, mem.stud_no');
                 $this->db->from('members as mem');
                 $this->db->join('levels as lvl','mem.level = lvl.levels_id');
+                $this->db->order_by('mem.gender', $f);
+                $this->db->order_by('mem.firstname', $f);
+                $query = $this->db->get();
+                return $query->result();
+            }
+        }
+        else if($e=="Monthly")
+        {
+            if($c=="Contact")
+            {
+                $this->db->select('mem.id, mem.stud_no');
+                $this->db->from('members as mem');
+                $this->db->where('mem.id', $d);
+                $this->db->order_by('mem.gender', $f);
+                $this->db->order_by('mem.firstname', $f);
+                $query = $this->db->get();
+                return $query->result();
+            }
+            else if($c=="Level")
+            {
+                $this->db->select('*');
+                $this->db->from('members as mem');
+                $this->db->join('levels as lv', 'mem.level = lv.levels_id');
+                $this->db->where('lv.levels_id', $d);
+                $this->db->order_by('mem.gender', $f);
+                $this->db->order_by('mem.firstname', $f);
+                $query = $this->db->get();
+                return $query->result();
+            }
+            else if($c=="Group")
+            {
+                $this->db->select('*');
+                $this->db->from('members as mem');
+                $this->db->join('group_members as gpm', 'mem.id = gpm.member_id');
+                $this->db->join('groups as gp', 'gpm.group_id = gp.groups_id');
+                $this->db->where('gp.groups_id', $d);
+                $this->db->order_by('mem.gender', $f);
+                $this->db->order_by('mem.firstname', $f);
+                $query = $this->db->get();
+                return $query->result();
+            }
+            else
+            {   
+                $this->db->select('mem.id, mem.stud_no');
+                $this->db->from('members as mem');
+                $this->db->join('levels as lvl','mem.level = lvl.levels_id');
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.firstname', $f);
                 $query = $this->db->get();
                 return $query->result();
@@ -142,6 +192,7 @@ class Monitor_New extends CI_Model {
                 $this->db->join('members as mem','lvl.levels_id = mem.level');
                 $this->db->where('mem.id', $d);
                 $this->db->order_by('mem.level', $f);
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.firstname', $f);
                 $query = $this->db->get();
                 return $query->result();
@@ -153,6 +204,7 @@ class Monitor_New extends CI_Model {
                 $this->db->join('members as mem', 'lv.levels_id = mem.level');
                 $this->db->where('lv.levels_id', $d);
                 $this->db->order_by('mem.level', $f);
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.firstname', $f);
                 $query = $this->db->get();
                 return $query->result();
@@ -166,6 +218,7 @@ class Monitor_New extends CI_Model {
                 $this->db->join('groups as gp', 'gpm.group_id = gp.groups_id');
                 $this->db->where('gp.groups_id', $d);
                 $this->db->order_by('mem.level', $f);
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.firstname', $f);
                 $query = $this->db->get();
                 return $query->result();
@@ -176,6 +229,7 @@ class Monitor_New extends CI_Model {
                 $this->db->from('levels as lvl');
                 $this->db->join('members as mem','lvl.levels_id = mem.level');
                 $this->db->order_by('mem.level', $f);
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.firstname', $f);
                 $query = $this->db->get();
                 return $query->result();
@@ -189,6 +243,7 @@ class Monitor_New extends CI_Model {
                 $this->db->from('members as mem');
                 $this->db->where('mem.id', $d);
                 $this->db->join('levels as lv', 'mem.level = lv.levels_id');
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.firstname', $f);
                 $query = $this->db->get();
                 return $query->result();
@@ -199,6 +254,7 @@ class Monitor_New extends CI_Model {
                 $this->db->from('members as mem');
                 $this->db->join('levels as lv', 'mem.level = lv.levels_id');
                 $this->db->where('lv.levels_id', $d);
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.firstname', $f);
                 $query = $this->db->get();
                 return $query->result();
@@ -210,6 +266,7 @@ class Monitor_New extends CI_Model {
                 $this->db->join('group_members as gpm', 'mem.id = gpm.member_id');
                 $this->db->join('groups as gp', 'gpm.group_id = gp.groups_id');
                 $this->db->where('gp.groups_id', $d);
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.firstname', $f);
                 $query = $this->db->get();
                 return $query->result();
@@ -219,6 +276,7 @@ class Monitor_New extends CI_Model {
                 $this->db->select('mem.id');
                 $this->db->from('levels as lvl');
                 $this->db->join('members as mem','lvl.levels_id = mem.level');
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.level', $f);
                 $query = $this->db->get();
                 return $query->result();
@@ -242,6 +300,7 @@ class Monitor_New extends CI_Model {
                 $this->db->from('members as mem');
                 $this->db->join('levels as lv', 'mem.level = lv.levels_id');
                 $this->db->where('lv.levels_id', $d);
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.firstname', $f);
                 $query = $this->db->get();
                 return $query->result();
@@ -253,6 +312,7 @@ class Monitor_New extends CI_Model {
                 $this->db->join('group_members as gpm', 'mem.id = gpm.member_id');
                 $this->db->join('groups as gp', 'gpm.group_id = gp.groups_id');
                 $this->db->where('gp.groups_id', $d);
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.firstname', $f);
                 $query = $this->db->get();
                 return $query->result();
@@ -262,6 +322,7 @@ class Monitor_New extends CI_Model {
                 $this->db->select('mem.id');
                 $this->db->from('levels as lvl');
                 $this->db->join('members as mem','lvl.levels_id = mem.level');
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.level', $f);
                 $query = $this->db->get();
                 return $query->result();

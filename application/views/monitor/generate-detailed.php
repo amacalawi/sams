@@ -9,23 +9,30 @@
             $time_from = date("h:i",strtotime($_GET['time_from']));
             $time_to = date("h:i",strtotime($_GET['time_to']));
             $data_row = 0;
-
+            $female_display = 0; $male_display = 0;
             foreach ($results as $row) {
-
         ?>  
                 <?php $level['result'] = $this->Monitor->select_detailed_logs($_GET['date_from'],$_GET['date_to'],$_GET['category'],$_GET['category_level'],$_GET['type'],$_GET['type_order'],$_GET['time_from'],$_GET['time_to'],$row->id); ?>
-                <?php $inc = 0; if($level['result'] > 0) { ?>
+                <?php $inc = 0;  if($level['result'] > 0) { ?>
                 <?php foreach ($level['result'] as $row1) { $inc++; $data_row++; ?>
+                    <?php if($row1->gender == 'Female' && $inc == 1 && $female_display == 0) { $female_display = 1; ?>
+                        <tr class="tborder">
+                            <td class="bgm-green-1 text-center dtr-level" colspan="4">
+                            <?php echo $row1->gender; ?>
+                            </td>
+                        </tr>
+                    <?php } else if($row1->gender == 'Male' && $male_display == 0) { $male_display = 1;?>
+                        <tr class="tborder">
+                            <td class="bgm-green-1 text-center dtr-level" colspan="4">
+                            <?php echo $row1->gender; ?>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     <?php if($data_row == 1) { ?>
-                    <!--tr class="tborder">
-                        <td class="bgm-green-1 text-center dtr-level" colspan="5">
-                            <?php //echo $this->Monitor->get_levels($row->id); ?>
-                        </td>
-                    </tr-->
                     <tr class="tborder">
-                        <th class="bgm-green-2 c-black">DATE</th>
-                        <th class="bgm-green-2 c-black">LEVEL</th>
+                        <th class="bgm-green-2 c-black">DATE</th>                        
                         <th class="bgm-green-2 c-black">FULLNAME</th>
+                        <th class="bgm-green-2 c-black">LEVEL</th>
                         <th class="bgm-green-2 c-black">TIMELOGS</th>
                     </tr>
                     <?php } ?>
@@ -41,15 +48,15 @@
                         <td class="<?php echo ($inc%2 == 0) ? 'bgm-green-2' : '' ?>">
                             <h5>
                                 <strong class="<?php echo ($inc%2 == 0) ? 'c-black' : '' ?>">
-                                    <?php echo $row1->levels_name; ?>
+                                    <?php echo $this->Monitor->get_fullname($row1->id); ?>
                                 </strong>
 
                             </h5>
-                        </td>
+                        </td>                          
                         <td class="<?php echo ($inc%2 == 0) ? 'bgm-green-2' : '' ?>">
                             <h5>
                                 <strong class="<?php echo ($inc%2 == 0) ? 'c-black' : '' ?>">
-                                    <?php echo $this->Monitor->get_fullname($row1->id); ?>
+                                    <?php echo $row1->levels_name; ?>
                                 </strong>
 
                             </h5>
