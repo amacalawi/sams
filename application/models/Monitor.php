@@ -254,7 +254,8 @@ class Monitor extends CI_Model {
             $this->db->where('gp.groups_id', $d);
             $this->db->where('dtr.timelog >=',$date_from.' '.$g);
             $this->db->where('dtr.timelog <=',$date_end.' '.$h);
-            $this->db->order_by('mem.firstname', $f);
+            $this->db->order_by('mem.gender', $f);
+            $this->db->order_by('mem.firstname', $f); 
             $this->db->where('mem.id', $i);
             $query = $this->db->get();
             return $query->result();
@@ -450,6 +451,7 @@ class Monitor extends CI_Model {
                 $this->db->join('group_members as gpm', 'mem.id = gpm.member_id');
                 $this->db->join('groups as gp', 'gpm.group_id = gp.groups_id');
                 $this->db->where('gp.groups_id', $d);
+                $this->db->order_by('mem.gender', $f);
                 $this->db->order_by('mem.firstname', $f);
                 $query = $this->db->get();
                 return $query->result();

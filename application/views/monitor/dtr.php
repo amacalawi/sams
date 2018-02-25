@@ -1,41 +1,4 @@
     <section id="content">
-         <!--pre>
-         <?php //$totallate = 0; ?>
-         <?php //var_dump($in = $this->Monitor_New->get_dtrlog_in_2('2006141', '2017-10-08')); ?>
-
-         <?php //var_dump( $time_in_hr = Date("H",strtotime($in))* 60) ; ?>
-         <?php //var_dump( $time_in_min = Date("i",strtotime($in))* 60) ; ?>
-
-         
-          <?php //var_dump($reg_in_hr = Date("H",strtotime($this->Monitor_New->get_late_in_by_member_id(4096)))* 60); ?>
-
-          <?php //var_dump($reg_in_min  = (Date("i",strtotime($this->Monitor_New->get_late_in_by_member_id(4096))) - 1)); ?>
-
-          <?php //var_dump(date("H:i", strtotime('00:00:00')) ); ?>
-
-          <?php  /*if($time_in_hr > $reg_in_hr)
-                    {
-                        $minutes = ($time_in_hr + $time_in_min) - ($reg_in_hr + $reg_in_min);
-                        $totallate = $totallate + $minutes;
-
-                    } 
-                    else if (($time_in_hr == ($reg_in_hr)) && $time_in_min > 0)
-                    {
-                        $totallate = $totallate + $time_in_min;
-                    }   
-*/
-                    ?>
-
-          <?php //echo $totallate = ($totallate * 60); ?>
-
-        <?php //echo date("H:i", strtotime( ( $totallate > 0) ? gmdate("H:i:s", ($totallate)) : '00:00:00' )  ); ?>
-
-         
-
-
-          <?php //var_dump( ); ?>
-      </pre-->
-
         <div class="container">
             <div class="card">
                 <div class="card-header m-b-25">
@@ -47,7 +10,6 @@
                     </h2>
                 </div>
                 <div class="card-body card-padding">
-    <!--                Cras leo sem, egestas a accumsan eget, euismod at nunc. Praesent vel mi blandit, tempus ex gravida, accumsan dui. Sed sed aliquam augue. Nullam vel suscipit purus, eu facilisis ante. Mauris nec commodo felis.-->
                     <div class="clearfix m-b-25"></div>
 
                     <div class="row">
@@ -104,6 +66,7 @@
                                 <option value="">Select</option>
                                 <option value="Detailed">Detailed</option>
                                 <option value="Summary">Summary</option>
+                                <option value="Monthly">Monthly</option>
                                 <option value="Absents_Only">Absents Only</option>
                                 <option value="Late_Only">Late Only</option>
                             </select>

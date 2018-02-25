@@ -1,18 +1,8 @@
 <table class="table i-table m-t-25 m-b-25">
     <tbody>
         <thead>
-            <tr class="tborder">
-                <td class="bgm-green-1 text-center dtr-level" colspan="6">
-                    <?php if(urldecode($this->input->get('category_level')) != 'null'): ?>
-                        <?php if (urldecode($this->input->get('category')) == 'Contact'): ?>
-                          (<?php echo $this->Monitor_New->get_levels(urldecode($this->input->get('category_level'))); ?>)
-                        <?php else : ?>
-                          (<?php echo $this->Monitor_New->get_filter(urldecode($this->input->get('category')), urldecode($this->input->get('category_level'))); ?>)
-                        <?php endif; ?>
-                    <?php endif; ?>
-                </td>
-            </tr>
             <?php
+                $female_display = 0; $male_display = 0; $inc = 0;
                 foreach ($results as $row) {
 
                     $date_from = str_replace('/', '-', urldecode($this->input->get('date_from')));
@@ -21,7 +11,35 @@
                     $time_to = strtotime(urldecode($this->input->get('time_to')));
                     $totaltime = 0;
                     $totallate = 0;
-            ?>
+                    $inc++;
+            ?>  
+                <?php if($row->gender == 'Female' && $inc == 1 && $female_display == 0) { $female_display = 1; ?>
+                    <tr class="tborder">
+                        <td class="bgm-green-1 text-center dtr-level" colspan="6">
+                        <?php echo $row->gender; ?>
+                        </td>
+                    </tr>
+                <?php } else if($row->gender == 'Male' && $male_display == 0) { $male_display = 1;?>
+                    <tr class="tborder">
+                        <td class="bgm-green-1 text-center dtr-level" colspan="6">
+                        <?php echo $row->gender; ?>
+                        </td>
+                    </tr>
+                <?php } ?>
+
+                <?php if($inc == 1) { ?>
+                <tr class="tborder">
+                    <td class="bgm-green-2 text-center dtr-level c-black" colspan="6">
+                        <?php if(urldecode($this->input->get('category_level')) != 'null'): ?>
+                            <?php if (urldecode($this->input->get('category')) == 'Contact'): ?>
+                              (<?php echo $this->Monitor_New->get_levels(urldecode($this->input->get('category_level'))); ?>)
+                            <?php else : ?>
+                              (<?php echo $this->Monitor_New->get_filter(urldecode($this->input->get('category')), urldecode($this->input->get('category_level'))); ?>)
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <?php } ?>
 
                 <tr class="tborder">
                     <td class="text-center dtr-name" colspan="6">
