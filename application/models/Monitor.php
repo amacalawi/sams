@@ -336,19 +336,20 @@ class Monitor extends CI_Model {
         }
     }
 
+    
+
     public function select_absent_logs(&$a,&$b,&$c,&$d,&$e,&$f,&$g,&$h,&$i,$j)
     {
         $dates = date("Y-m-d",strtotime(str_replace('/', '-', $j)));
- 
+
         if($c=="Contact") {
             $this->db->select('*');
             $this->db->from('dtr_log as dtr');
-            $this->db->join('members as mem', 'dtr.member_id = mem.id');
-            $this->db->or_where('dtr.timelog LIKE', '%' . $dates . '%');
-            $this->db->where('mem.id',$d);
+            $this->db->join('members as mem', 'dtr.member_id = mem.id');  
+            $this->db->where('dtr.timelog LIKE', '%' . $dates . '%');
+            $this->db->where('mem.id', $i);
             $this->db->order_by('mem.firstname', $f);
             $this->db->order_by('dtr.id', $f);
-            $this->db->where('mem.id', $i);
             $query = $this->db->get();
             return $query->num_rows();
         }
@@ -356,11 +357,11 @@ class Monitor extends CI_Model {
             $this->db->select('*');
             $this->db->from('dtr_log as dtr');
             $this->db->join('members as mem', 'dtr.member_id = mem.id');
-            $this->db->join('levels as lv', 'mem.level = lv.levels_id');
-            $this->db->where('lv.levels_id', $d);
-            $this->db->or_where('dtr.timelog LIKE', '%' . $dates . '%');
-            $this->db->order_by('mem.firstname', $f);
+            $this->db->join('levels as lv', 'mem.level = lv.levels_id');            
+            $this->db->where('dtr.timelog LIKE', '%' . $dates . '%');            
             $this->db->where('mem.id', $i);
+            $this->db->where('lv.levels_id', $d);
+            $this->db->order_by('mem.firstname', $f);
             $query = $this->db->get();
             return $query->num_rows();
         }
@@ -369,20 +370,20 @@ class Monitor extends CI_Model {
             $this->db->from('dtr_log as dtr');
             $this->db->join('members as mem', 'dtr.member_id = mem.id');
             $this->db->join('group_members as gpm', 'mem.id = gpm.member_id');
-            $this->db->join('groups as gp', 'gpm.group_id = gp.groups_id');
+            $this->db->join('groups as gp', 'gpm.group_id = gp.groups_id');            
+            $this->db->where('dtr.timelog LIKE', '%' . $dates . '%');            
             $this->db->where('gp.groups_id', $d);
-            $this->db->or_where('dtr.timelog LIKE', '%' . $dates . '%');
-            $this->db->order_by('mem.firstname', $f);
             $this->db->where('mem.id', $i);
+            $this->db->order_by('mem.firstname', $f);
             $query = $this->db->get();
             return $query->num_rows();
         }
         else {
             $this->db->select('*');
             $this->db->from('dtr_log as dtr');
-            $this->db->join('members as mem', 'dtr.member_id = mem.id');
-            $this->db->or_where('dtr.timelog LIKE', '%' . $dates . '%');
+            $this->db->join('members as mem', 'dtr.member_id = mem.id');            
             $this->db->order_by('mem.firstname', $f);
+            $this->db->where('dtr.timelog LIKE', '%' . $dates . '%');
             $this->db->where('mem.id', $i);
             $query = $this->db->get();
             return $query->num_rows();
@@ -499,7 +500,7 @@ class Monitor extends CI_Model {
             endif;
         elseif ($e=="Absents_Only"):
             if($c=="Contact"):
-                $this->db->select('mem.id');
+                $this->db->select('*');
                 $this->db->from('members as mem');
                 $this->db->where('mem.id', $d);
                 $this->db->join('levels as lv', 'mem.level = lv.levels_id');
@@ -507,7 +508,7 @@ class Monitor extends CI_Model {
                 $query = $this->db->get();
                 return $query->result();
             elseif($c=="Level"):
-                $this->db->select('mem.id');
+                $this->db->select('*');
                 $this->db->from('members as mem');
                 $this->db->join('levels as lv', 'mem.level = lv.levels_id');
                 $this->db->where('lv.levels_id', $d);
@@ -515,7 +516,7 @@ class Monitor extends CI_Model {
                 $query = $this->db->get();
                 return $query->result();
             elseif($c=="Group"):
-                $this->db->select('mem.id');
+                $this->db->select('*');
                 $this->db->from('members as mem');
                 $this->db->join('group_members as gpm', 'mem.id = gpm.member_id');
                 $this->db->join('groups as gp', 'gpm.group_id = gp.groups_id');
@@ -524,7 +525,7 @@ class Monitor extends CI_Model {
                 $query = $this->db->get();
                 return $query->result();
             else:
-                $this->db->select('mem.id');
+                $this->db->select('*');
                 $this->db->from('levels as lvl');
                 $this->db->join('members as mem','lvl.levels_id = mem.level');
                 $this->db->order_by('mem.level', $f);

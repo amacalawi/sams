@@ -323,9 +323,9 @@ class MembersController extends CI_Controller {
         }
     }
 
-    public function upload_photo()
+    public function upload_photo($id = null)
     {
-        $config['upload_path'] = "./uploads/";
+        $config['upload_path'] = "./uploads/students/";
         $config['allowed_types'] = "gif|jpg|jpeg|png|tiff";
         $config['file_name'] = $_FILES["file"]['name'];
 
@@ -344,7 +344,11 @@ class MembersController extends CI_Controller {
             //     var_dump( $this->upload->data() ); die();
             // echo "</pre>";
             $ud = $this->upload->data();
-            $this->member_photo_url = base_url() .'uploads/'. $ud['file_name'];
+            // if($id) {
+                 $this->member_photo_url = base_url() .'uploads/students/'. $ud['file_name'];
+            // } else {
+            //     $this->member_photo_url = base_url() .'uploads/students/'. $ud['file_name'];
+            // }
             $this->session->set_userdata('members_photo', $this->member_photo_url);
             $this->session->set_userdata('members_photo_dirpath', $ud['full_path']);
             // move_uploaded_file($this->member_photo_url, "./uploads/images/");

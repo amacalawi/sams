@@ -2,6 +2,8 @@ var memberTable;
 var G_selectedRows = [];
 $(document).ready(function(){
 
+
+
     // Student Number
     $('.input-selectize').each(function (e) {
         var $this = $(this);
@@ -83,40 +85,42 @@ $(document).ready(function(){
 
     // Dropzone.autoDiscover = false;
 
-    if ($('#dropzoneMember').length != 0) {
-        var myDropzone = window.Dropzone.options.dropzoneMember = {
-            maxFiles: 1,
+    var myDropzone = window.Dropzone.options.dropzoneMember = {
+        maxFiles: 1,
+        // url: base_url("members/upload_photo/") + $('body #edit-member-form').find('input[type="text"][name="stud_no"]').val(),
+        acceptedFiles: 'image/*',
+        addRemoveLinks: true,
+        init: function () {
+            this.on("maxfilesexceeded", function(file){
 
-            acceptedFiles: 'image/*',
-            addRemoveLinks: true,
-            init: function () {
-                this.on("maxfilesexceeded", function(file){
+            });
+            this.on("addedfile", function (file) {
+                // console.log('file added...');
+            });
 
-                });
-                this.on("addedfile", function (file) {
-                    // console.log('file added...');
-                });
+            this.on("success", function (file, response) {
+                if( 'error' === response.type ) {
+                    swal('Error', response.message, response.type);
+                    this.removeFile(file);
+                } else {
+                    // var response = $.parseJSON(response);
+                    // notify(response.message, response.type, 9000);
+                    // this.removeFile(file);
+                }
+            });
 
-                this.on("success", function (file, response) {
-                    if( 'error' === response.type ) {
-                        swal('Error', response.message, response.type);
-                        this.removeFile(file);
-                    } else {
-                        // var response = $.parseJSON(response);
-                        // notify(response.message, response.type, 9000);
-                        // this.removeFile(file);
-                    }
-                });
+            this.on("reset", function(file){ this.removeAllFiles(); });   
+            var _this = this;
 
-                this.on("reset", function(file){ this.removeAllFiles(); });   
-              
-            },
-            error: function(file, response) {
-                notify(response, 'danger', 0);
-                this.removeFile(file);
-            }
-        };
-    }
+            $('.modal').on('hidden.bs.modal', function () {
+                _this.removeAllFiles();
+            });
+        },
+        error: function(file, response) {
+            notify(response, 'danger', 0);
+            this.removeFile(file);
+        }
+    };
 
     $('#edit-member').on('hidden.bs.modal', function () {
         // for (var i = 0; i < myDropzone.files.length; i ++) {
@@ -516,8 +520,13 @@ function init_table() {
                             if( k == 'schedule_id' ) reload_selectpickers_key( k, v);
                             if( k == 'groups' ) reload_selectpickers_key( k+"[]", v);
                             if( k == 'level' ) reload_selectpickers_key( k, v);
-                        });
 
+                            if( k == 'stud_no') {
+                                var urls = $('#dropzoneMember').attr('action', base_url('members/upload_photo/' + v));
+                            }
+
+                        });
+                        
                         new_reload_selectpickers_key( "groups[]", member.groups);
                         
                     }

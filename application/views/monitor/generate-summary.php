@@ -27,20 +27,6 @@
                     </tr>
                 <?php } ?>
 
-                <?php if($inc == 1) { ?>
-                <tr class="tborder">
-                    <td class="bgm-green-2 text-center dtr-level c-black" colspan="6">
-                        <?php if(urldecode($this->input->get('category_level')) != 'null'): ?>
-                            <?php if (urldecode($this->input->get('category')) == 'Contact'): ?>
-                              (<?php echo $this->Monitor_New->get_levels(urldecode($this->input->get('category_level'))); ?>)
-                            <?php else : ?>
-                              (<?php echo $this->Monitor_New->get_filter(urldecode($this->input->get('category')), urldecode($this->input->get('category_level'))); ?>)
-                            <?php endif; ?>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <?php } ?>
-
                 <tr class="tborder">
                     <td class="text-center dtr-name" colspan="6">
                         <strong><?php echo ucwords(strtolower($this->Monitor->get_fullname($row->id))); ?></strong>
