@@ -37,6 +37,9 @@
 
                             <?php endif; ?>
                         </h3>
+                        <h3 class="text-center text-uppercase">
+                            <?php echo str_replace('_', ' ', $_GET['type']); ?> REPORT
+                        </h3>
                     </div>
                 </div>
                 <div class="row m-b-15">
@@ -44,7 +47,6 @@
                     <div class="col-xs-6">
                         <div class="text-right">
                             <p class="c-gray">Start Date &amp; Time</p>
-
                             <h4>
                                 <?php
                                 $str = str_replace('/', '-', $_GET['date_from']);
@@ -52,7 +54,6 @@
                                 <span id="datefrom_val"><?php echo date("Y-m-d", strtotime($str)); ?></span>
                                  (<span id="timefrom_val"><?php echo $_GET['time_from']; ?></span>)
                             </h4>
-
                         </div>
                     </div>
 
@@ -82,10 +83,8 @@
                         <?php include __DIR__ . '/generate-monthly.php' ?>
                     <?php elseif (isset($_GET['type']) &&($_GET['type']=="Absents_Only")): ?>
                         <?php include __DIR__ . '/generate-absent.php' ?>
-
                     <?php elseif (isset($_GET['type']) &&($_GET['type']=="Late_Only")): ?>
                         <?php include __DIR__ . '/generate-late.php' ?>
-
                     <?php else: ?>
                         <?php include __DIR__ . '/generate-detailed.php' ?>
                     <?php endif; ?>
