@@ -124,7 +124,7 @@ class DBAccess extends BaseModel
         $sql = "SELECT m.msisdn,m.id
                 FROM `groups` as g
                 JOIN group_members as gm ON g.groups_id = gm.group_id
-                JOIN members as m ON m.id = gm.member_id WHERE g.groups_code='$group' GROUP BY m.msisdn";
+                JOIN members as m ON m.id = gm.member_id WHERE g.groups_code='$group'";
         return $this->select_all($sql);
     }
 
